@@ -1,7 +1,6 @@
 package com.neoage.service;
 
 import com.neoage.dto.EmployeeDto;
-import com.neoage.entity.Employee;
 import com.neoage.exception.EmployeeManagementException;
 import com.neoage.mapper.EmployeeMapper;
 import com.neoage.repository.EmployeeRepository;
@@ -31,8 +30,8 @@ public class EmployeeService {
 
     @Transactional(readOnly = true)
     public List<EmployeeDto> getAllEmployees() {
-        List<Employee> employeeList = employeeRepository.findAll();
-        return employeeList.stream()
+        return employeeRepository.findAll()
+                .stream()
                 .map(employeeMapper::toDto)
                 .toList();
     }
