@@ -18,8 +18,6 @@ public class Employee {
 
     private String name;
 
-    private int salary;
+    private Integer salary;
 
-//    @Version
-//    private int version;
 }
