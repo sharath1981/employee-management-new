@@ -51,6 +51,10 @@ public class EmployeeService {
                 });
     }
 
+    public void deleteAll() {
+        employeeRepository.deleteAll();
+    }
+
     public EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id) {
         return employeeRepository.findById(id)
                 .map(employee -> employeeMapper.mergeToEntity(employeeDto, employee))

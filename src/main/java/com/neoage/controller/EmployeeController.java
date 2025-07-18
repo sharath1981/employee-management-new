@@ -44,4 +44,10 @@ public class EmployeeController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping
+    ResponseEntity<EmployeeDto> deleteAll() {
+        employeeService.deleteAll();
+        return ResponseEntity.noContent().build();
+    }
+
 }
