@@ -1,5 +1,6 @@
 package com.neoage.service;
 
+import com.neoage.constant.AppConstant;
 import com.neoage.dto.EmployeeDto;
 import com.neoage.exception.EmployeeManagementException;
 import com.neoage.mapper.EmployeeMapper;
@@ -24,7 +25,7 @@ public class EmployeeService {
     public EmployeeDto getEmployeeById(Long id) {
         return employeeRepository.findById(id)
                 .map(employeeMapper::toDto)
-                .orElseThrow(() -> new EmployeeManagementException("Employee not found"));
+                .orElseThrow(() -> new EmployeeManagementException(AppConstant.EMPLOYEE_NOT_FOUND));
 
     }
 
@@ -47,7 +48,7 @@ public class EmployeeService {
     public void deleteEmployee(Long id) {
         employeeRepository.findById(id)
                 .ifPresentOrElse(employeeRepository::delete, () -> {
-                    throw new EmployeeManagementException("Employee not found");
+                    throw new EmployeeManagementException(AppConstant.EMPLOYEE_NOT_FOUND);
                 });
     }
 
@@ -58,8 +59,7 @@ public class EmployeeService {
     public EmployeeDto updateEmployee(EmployeeDto employeeDto, Long id) {
         return employeeRepository.findById(id)
                 .map(employee -> employeeMapper.mergeToEntity(employeeDto, employee))
-                .map(employeeRepository::save)
                 .map(employeeMapper::toDto)
-                .orElseThrow(() -> new EmployeeManagementException("Employee not found"));
+                .orElseThrow(() -> new EmployeeManagementException(AppConstant.EMPLOYEE_NOT_FOUND));
     }
 }

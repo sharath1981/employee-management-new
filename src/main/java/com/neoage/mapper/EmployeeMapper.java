@@ -20,7 +20,7 @@ public class EmployeeMapper {
 
     public Employee toEntity(EmployeeDto employeeDto) {
         return Optional.ofNullable(employeeDto)
-                .map(e -> Employee.builder().name(employeeDto.name()).salary(employeeDto.salary()).build())
+                .map(e -> mergeToEntity(employeeDto, new Employee()))
                 .orElse(null);
     }
 
